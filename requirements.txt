@@ -5,3 +5,4 @@ supabase
 pydantic[email]
 requests
 email-validator
+resend
