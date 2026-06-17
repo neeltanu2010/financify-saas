@@ -1,29 +1,23 @@
 import os
-import smtplib
-from email.message import EmailMessage
+import resend
 
-SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
-SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
-SMTP_USER = os.getenv("SMTP_USER", "")
-SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
-FROM_EMAIL = os.getenv("FROM_EMAIL", SMTP_USER)
+RESEND_API_KEY = os.getenv("RESEND_API_KEY")
+FROM_EMAIL = os.getenv("FROM_EMAIL", "Financify <onboarding@resend.dev>")
+
+resend.api_key = RESEND_API_KEY
 
 
 def send_otp_email(to_email: str, otp: str):
-    if not SMTP_USER or not SMTP_PASSWORD:
-        raise RuntimeError("SMTP_USER and SMTP_PASSWORD are required to send OTP emails")
+    params = {
+        "from": FROM_EMAIL,
+        "to": [to_email],
+        "subject": "Your Financify login code",
+        "html": f"""
+        <h2>Your Financify Login Code</h2>
+        <p>Your OTP is:</p>
+        <h1>{otp}</h1>
+        <p>This code expires in 10 minutes.</p>
+        """
+    }
 
-    msg = EmailMessage()
-    msg["From"] = FROM_EMAIL
-    msg["To"] = to_email
-    msg["Subject"] = "Your Financify login code"
-    msg.set_content(
-        f"Your Financify login code is: {otp}\n\n"
-        "This code expires in 10 minutes.\n"
-        "If you did not request this, ignore this email."
-    )
-
-    with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
-        server.starttls()
-        server.login(SMTP_USER, SMTP_PASSWORD)
-        server.send_message(msg)
+    return resend.Emails.send(params)
