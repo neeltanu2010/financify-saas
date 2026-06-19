@@ -25,7 +25,7 @@ def financify_login_email_html(otp: str):
                     style="padding:35px 25px 25px 25px;">
 
                   <img
-                    src="https://financify.blog/wp-content/uploads/2026/05/445e63b6-b77c-4834-98eb-bf8e77b40f44.png"
+                    src="https://financify.blog/wp-content/uploads/2026/05/cropped-2b30e967-7085-4096-b228-4a5cd1e258c9.png"
                     alt="Financify"
                     width="220"
                     style="display:block;margin:0 auto 20px auto;"
