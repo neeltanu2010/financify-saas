@@ -23,6 +23,7 @@ ALLOWED_TOOLS = {
     "macro-dance-floor",
     "portfolio-hive-check",
     "premium-stock-valuation",
+    "hive-cycle-predictor"
 }
 
 
