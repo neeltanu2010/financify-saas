@@ -58,11 +58,7 @@ def send_otp_email(to_email: str, otp: str):
         "from": FROM_EMAIL,
         "to": [to_email],
         "subject": "Your Financify login code",
-        "html": f"""
-        <h2>Your Financify Login Code</h2>
-        <p>Your OTP is:</p>
-        <h1>{otp}</h1>
-        <p>This code expires in 10 minutes.</p>
+        "html": financify_login_email_html(otp)
         """
     }
 
