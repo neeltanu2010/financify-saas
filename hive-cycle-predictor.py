@@ -1,6 +1,6 @@
 from streamlit_integration.auth_client import require_tool_access, record_tool_use
 
-TOOL_NAME = "hive cycle predictor"
+TOOL_NAME = "hive-cycle-predictor"
 email, status = require_tool_access(TOOL_NAME)
 
 # Put this line ONLY after the user successfully runs the tool:
