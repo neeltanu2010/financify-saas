@@ -108,7 +108,7 @@ def send_otp_email(to_email: str, otp: str):
         "to": [to_email],
         "subject": "Your Financify login code",
         "html": financify_login_email_html(otp)
-        """
+
     }
 
     return resend.Emails.send(params)
